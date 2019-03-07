@@ -16,7 +16,6 @@ else
     FILE="$1"
 fi
 
-
 # Check if it's a valid file
 if ! [ -f "$FILE" ]
 then
@@ -36,7 +35,10 @@ do
         # ignore comments
         if ! [[ "$line" = \#* ]];
         then
-            echo "$line"    
+            # Here we have valid lines to be split into [key, value]
+            IFS="=" read -r key value <<< "$line"
+            echo "$key""$value"
+                
         fi
     fi
 
