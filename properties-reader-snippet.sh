@@ -24,9 +24,20 @@ then
     exit 1
 fi
 
-# Start parsing 
+# Parse the properties file, ignoring:
+#   - empty lines
+#   - lines containing only spaces
+#   - lines starting with a comment: # comment ...
+while IFS="" read -r line || [[ -n "$line" ]]; 
+do
+    # ignore empty lines
+    if [[ "$line" =~ [^[:space:]] ]];
+    then
+        # ignore comments
+        if ! [[ "$line" = \#* ]];
+        then
+            echo "$line"    
+        fi
+    fi
 
-while IFS="" read -r line || [[ -n "$line" ]]; do
-    echo "$line"
-    
 done < "$FILE"

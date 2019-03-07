@@ -20,6 +20,9 @@ app.server.port = 78
 text.multiline = This text \
     ends \
     here
+
+# The next line contains only spaces and will be ignored
+        
 ```
 
 ---
