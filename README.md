@@ -53,6 +53,8 @@ E.g:
     app.server.url                      appserverurl
 
 
+----
+
 The script **does not** (yet) parse multi-line back-slashed strings like this one:
 
 ```properties
@@ -61,3 +63,16 @@ text.multiline = This text \
     ends \
     here. 
 ```
+
+----
+
+Finally, your [ key,value ] are `eval`'ed inside the script, so you can easily reference them, eg:
+
+```bash
+echo "$appname"                 # prints MyApp
+echo "$appserverurl"            # prints http://127.0.0.1
+```
+
+----
+
+### Developed by Marko Pacak --> `info@myfirstandlastname.com`
