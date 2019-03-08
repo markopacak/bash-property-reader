@@ -17,10 +17,6 @@ app.server.port = 78
 
 
 
-text.multiline = This text \
-    ends \
-    here
-
 # The next line contains only spaces and will be ignored
         
 ```
@@ -55,3 +51,13 @@ E.g:
     app                                 app
     app.name                            appname
     app.server.url                      appserverurl
+
+
+The script **does not** (yet) parse multi-line back-slashed strings like this one:
+
+```properties
+# The following is not yet implemented
+text.multiline = This text \
+    ends \
+    here. 
+```

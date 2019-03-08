@@ -23,6 +23,12 @@ then
     exit 1
 fi
 
+# Utility function that removes leading and trailing whitespaces from a string
+trim(){
+    [[ "$1" =~ [^[:space:]](.*[^[:space:]])? ]]
+    echo "$1"
+}
+
 # Parse the properties file, ignoring:
 #   - empty lines
 #   - lines containing only spaces
@@ -36,9 +42,11 @@ do
         if ! [[ "$line" = \#* ]];
         then
             # Here we have valid lines to be split into [key, value]
-            IFS="=" read -r key value <<< "$line"
-            echo "$key""$value"
-                
+            IFS="=" read key value <<< "$line"
+            key=$(trim "$key")
+            value=$(trim "$value")
+
+            echo "$key"
         fi
     fi
 
