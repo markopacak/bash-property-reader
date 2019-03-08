@@ -26,7 +26,7 @@ fi
 # Utility function that removes leading and trailing whitespaces from a string
 trim(){
     [[ "$1" =~ [^[:space:]](.*[^[:space:]])? ]]
-    echo "$1"
+    printf "%s" "$BASH_REMATCH"
 }
 
 # Parse the properties file, ignoring:
@@ -43,11 +43,14 @@ do
         then
             # Here we have valid lines to be split into [key, value]
             IFS="=" read key value <<< "$line"
-            key=$(trim "$key")
+            # substitute dots with nothing
+            key="$(<<<$(trim "$key") tr -d "." )"
             value=$(trim "$value")
-
-            echo "$key"
+            eval ${key}=\${value}
         fi
     fi
-
 done < "$FILE"
+
+# ----------------------------------------------------------------
+# You can now use [key, value]'s inside your script here
+# E.g: echo "$appserverurl":"$appserverport"
