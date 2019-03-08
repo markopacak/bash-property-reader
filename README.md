@@ -75,4 +75,4 @@ echo "$appserverurl"            # prints http://127.0.0.1
 
 ----
 
-### Developed by Marko Pacak --> `info@myfirstandlastname.com`
+#### Developed by Marko Pacak --> `info@myfirstandlastname.com`
